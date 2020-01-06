@@ -1,5 +1,4 @@
-# Adding Middleware and Swagger to ASP.Net CORE WEB API
-Middleware, Swagger and Custom Configuration implementation in .Net core
+# Adding Middleware, Swagger and Custom Configuration implementation in .Net core
 
 1. Create Middleware Classes
 2. Create Middleware Extensions.
