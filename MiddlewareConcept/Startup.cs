@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MiddlewareConcept.AppConfiguration;
 using MiddlewareConcept.Middleware;
 
 namespace MiddlewareConcept
@@ -33,15 +34,21 @@ namespace MiddlewareConcept
             services.AddScoped<IClientConfiguration, ClientConfiguration>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            // Adding custom configuration (appsettings.json)
+            var section = Configuration.GetSection("MailConfiguration");
+            services.Configure<MailConfiguration>(section);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            // Adding custom middle ware.
             app.UseLogger();
             app.UseClientConfiguration();
-            
 
+            
 
 
             if (env.IsDevelopment())
